@@ -28,11 +28,17 @@ export class AppComponent implements OnInit{
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
   welcomeMessage:string[] = [];
+  convertedTime:string[] = [];
 
     ngOnInit(){
       this.httpClient.get<string[]>(this.baseURL + '/welcome').subscribe(data => {
         this.welcomeMessage = data;
         console.log(this.welcomeMessage);
+      });
+
+      this.httpClient.get<string[]>(this.baseURL + '/conversion').subscribe(a => {
+        this.convertedTime = a;
+        console.log(this.convertedTime);
       });
 
       this.roomsearch= new FormGroup({
